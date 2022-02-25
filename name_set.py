@@ -5,6 +5,7 @@ import opencc
 
 from name import Name
 from stroke_number import get_stroke_number
+from config import switch_wuge
 
 # 简体转繁体
 s2tConverter = opencc.OpenCC('s2t.json')
@@ -92,6 +93,7 @@ def get_name_dat(path, names, stroke_list):
     with open('data/' + path + '.dat', encoding='utf-8') as f:
         line_list = f.readlines()
         size = len(line_list)
+        sameName = list()
         progress = 0
         for i in range(0, size):
             # 生成进度
@@ -102,19 +104,26 @@ def get_name_dat(path, names, stroke_list):
             if len(data[0]) == 2:
                 name = data[0]
             else:
-                name = data[0][1:]
+                name = data[0][-2:]
+
+            if name in sameName:
+                continue
+            sameName.append(name)
             # 转繁体
             name = s2tConverter.convert(name)
             gender = data[1].replace('\n', '')
             if len(name) == 2:
-                # 转换笔画数
-                strokes = list()
-                strokes.append(get_stroke_number(name[0]))
-                strokes.append(get_stroke_number(name[1]))
-                # 判断是否包含指定笔画数
-                for stroke in stroke_list:
-                    if stroke[0] == strokes[0] and stroke[1] == strokes[1]:
-                        names.add(Name(name, '', gender))
+                if not switch_wuge:
+                    names.add(Name(name, '', gender))
+                else: 
+                    # 转换笔画数
+                    strokes = list()
+                    strokes.append(get_stroke_number(name[0]))
+                    strokes.append(get_stroke_number(name[1]))
+                    # 判断是否包含指定笔画数
+                    for stroke in stroke_list:
+                        if stroke[0] == strokes[0] and stroke[1] == strokes[1]:
+                            names.add(Name(name, '', gender))
 
 
 def get_name_txt(path, names, stroke_list):
@@ -157,21 +166,29 @@ def check_and_add_names(names, string_list, stroke_list):
         sentence = sentence.strip()
         # 转换笔画数
         strokes = list()
+        wordList = list()
         for ch in sentence:
             if is_chinese(ch):
+                wordList.append(ch)
                 strokes.append(get_stroke_number(ch))
             else:
                 strokes.append(0)
         # 判断是否包含指定笔画数
-        for stroke in stroke_list:
-            if stroke[0] in strokes and stroke[1] in strokes:
-                index0 = strokes.index(stroke[0])
-                index1 = strokes.index(stroke[1])
-                if index0 < index1:
-                    name0 = sentence[index0]
-                    name1 = sentence[index1]
-                    names.add(Name(name0 + name1, sentence, ''))
-
+        if not switch_wuge:
+            for k1, v1 in wordList:
+                for k2, v2 in wordList:
+                    if k1 == k2 or v1 == v2:
+                        continue
+                    names.add(Name(v1 + v2, sentence, ''))
+        else:
+            for stroke in stroke_list:
+                if stroke[0] in strokes and stroke[1] in strokes:
+                    index0 = strokes.index(stroke[0])
+                    index1 = strokes.index(stroke[1])
+                    if index0 < index1:
+                        name0 = sentence[index0]
+                        name1 = sentence[index1]
+                        names.add(Name(name0 + name1, sentence, ''))
 
 # 判断是否为汉字
 def is_chinese(uchar):

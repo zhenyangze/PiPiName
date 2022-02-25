@@ -1,7 +1,7 @@
 # 选择词库
 # 0: "默认", 1: "诗经", 2: "楚辞", 3: "论语",
 # 4: "周易", 5: "唐诗", 6: "宋诗", 7: "宋词"
-name_source = 1
+name_source = 0
 
 # 姓，仅支持单姓
 last_name = "甄"
@@ -16,7 +16,10 @@ min_stroke_count = 3
 max_stroke_count = 45
 
 # 允许使用中吉，开启后将生成包含中吉配置的名字，生成的名字会更多
-allow_general = False
+allow_general = True
+
+# 是否开启三才五格
+switch_wuge = False
 
 # 是否筛选名字，仅输出名字库中存在的名字，可以过滤明显不合适的名字
 name_validate = True
