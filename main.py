@@ -35,7 +35,7 @@ else:
             if contain_bad_word(i.first_name):
                 # 不喜欢字过滤
                 continue
-            if not checkNameShengdiao(i.first_name, allow_normal_shengdiao):
+            if not checkNameShengdiao(last_name + i.first_name, allow_normal_shengdiao):
                 # 过滤不好听的名称
                 continue
             names.append(i)

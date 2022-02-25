@@ -8,7 +8,8 @@ shengdiao_list = {
     '1': "平",
     '2': "平",
     '3': "仄",
-    '4': "仄"
+    '4': "仄",
+    '5': "平"
 }
 
 good_shengdiao = ['平仄平', '仄平平', '仄仄平']
@@ -16,7 +17,7 @@ normal_shengdiao = ['平平仄', '平仄仄', '仄平仄']
 bad_shengdiao = ['平平平', '仄仄仄']
 
 def checkNameShengdiao(name, allow_normal_shengdiao = False):
-    shengdiaoList = lazy_pinyin(name, style=Style.TONE3)
+    shengdiaoList = lazy_pinyin(name, style=Style.TONE3, neutral_tone_with_five=True)
     shengdiaoName = ''
     for i in shengdiaoList:
         shengdiao = i[-1]
@@ -27,3 +28,5 @@ def checkNameShengdiao(name, allow_normal_shengdiao = False):
     if allow_normal_shengdiao and shengdiaoName in normal_shengdiao:
         return True
     return False
+
+# print(checkNameShengdiao('种下一颗种子'))
