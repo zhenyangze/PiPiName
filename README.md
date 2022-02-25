@@ -14,6 +14,11 @@
 pip install opencc
 ```
 
+安装获取拼音声调库 pypinyin
+```
+pip install pypinyin
+```
+
 ## 2. 配置参数
 
 打开 config.py，进行参数配置：

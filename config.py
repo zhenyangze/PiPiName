@@ -1,10 +1,10 @@
 # 选择词库
 # 0: "默认", 1: "诗经", 2: "楚辞", 3: "论语",
 # 4: "周易", 5: "唐诗", 6: "宋诗", 7: "宋词"
-name_source = 1
+name_source = 0
 
 # 姓，仅支持单姓
-last_name = "林"
+last_name = "甄"
 
 # 不想要的字，结果中不会出现这些字
 dislike_words = list("")
@@ -13,7 +13,7 @@ dislike_words = list("")
 min_stroke_count = 3
 
 # 最大笔画数
-max_stroke_count = 30
+max_stroke_count = 45
 
 # 允许使用中吉，开启后将生成包含中吉配置的名字，生成的名字会更多
 allow_general = False
@@ -22,7 +22,10 @@ allow_general = False
 name_validate = True
 
 # 是否筛选性别，男/女，空则不筛选，仅当开启名字筛选时有效
-gender = ""
+gender = "女"
+
+# 是否使用一般声调，默认使用好听的名字
+allow_normal_shengdiao = False
 
 ##############################################################################################
 
@@ -31,4 +34,4 @@ gender = ""
 check_name = ""
 
 # 是否显示名字来源
-check_name_resource = False
+check_name_resource = True
