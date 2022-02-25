@@ -175,8 +175,8 @@ def check_and_add_names(names, string_list, stroke_list):
                 strokes.append(0)
         # 判断是否包含指定笔画数
         if not switch_wuge:
-            for k1, v1 in wordList:
-                for k2, v2 in wordList:
+            for k1, v1 in enumerate(wordList):
+                for k2, v2 in enumerate(wordList):
                     if k1 == k2 or v1 == v2:
                         continue
                     names.add(Name(v1 + v2, sentence, ''))

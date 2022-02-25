@@ -23,7 +23,7 @@ if len(check_name) == 3:
 else:
     # 起名
     names = list()
-    fileName = last_name + "_" + gender +  "_" + name_source +".txt"
+    fileName = last_name + "_" + gender +  "_" + str(name_source) +".txt"
     with open(fileName, "w+", encoding='utf-8') as f:
         for i in get_source(name_source, name_validate, get_stroke_list(last_name, allow_general)):
             if i.stroke_number1 < min_stroke_count or i.stroke_number1 > max_stroke_count or \
