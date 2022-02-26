@@ -104,7 +104,7 @@ def get_name_dat(path, names, stroke_list):
             if len(data[0]) == 2:
                 name = data[0]
             else:
-                name = data[0][-2:]
+                name = data[0][1:]
 
             if name in sameName:
                 continue
