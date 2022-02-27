@@ -1,9 +1,10 @@
 from config import name_source, last_name, dislike_words, \
     min_stroke_count, max_stroke_count, allow_general, name_validate, gender, \
-    check_name, check_name_resource, allow_normal_shengdiao
+    check_name, check_name_resource, allow_normal_shengdiao,wuxing_list
 from name_set import check_resource, get_source
 from wuge import check_wuge_config, get_stroke_list
 from shengdiao import checkNameShengdiao
+from wuxing import checkNameWuxing
 import os
 
 
@@ -39,6 +40,10 @@ else:
             if not checkNameShengdiao(last_name + i.first_name, allow_normal_shengdiao):
                 # 过滤不好听的名称
                 continue
+
+            if not checkNameWuxing(last_name + i.first_name, wuxing_list):
+                continue;
+
             names.append(i)
         print(">>输出结果...")
         names.sort()
