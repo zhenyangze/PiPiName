@@ -44,4 +44,4 @@ else:
         names.sort()
         for i in names:
             f.write(last_name + str(i) + "\n")
-        print(">>输出完毕，请查看「names.txt」文件")
+        print(">>输出完毕，请查看「" + fileName + "」文件")
