@@ -41,7 +41,8 @@ else:
                 # 过滤不好听的名称
                 continue
 
-            if not checkNameWuxing(last_name + i.first_name, wuxing_list):
+            if not checkNameWuxing(i.first_name, wuxing_list):
+                # 过滤五行
                 continue;
 
             names.append(i)
