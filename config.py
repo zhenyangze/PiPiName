@@ -22,7 +22,7 @@ max_stroke_count = 45
 allow_general = True
 
 # 是否开启三才五格
-switch_wuge = False
+switch_wuge = True
 
 # 是否筛选名字，仅输出名字库中存在的名字，可以过滤明显不合适的名字
 name_validate = True
