@@ -22,6 +22,7 @@ def get_source(source, validate, stroke_list):
     names = set()
     # 默认
     if source == 0:
+        print('>>加载全量姓名库...')
         get_name_dat('Chinese_Names', names, stroke_list)
     # 诗经
     elif source == 1:
@@ -90,17 +91,10 @@ def get_name_valid(path, exist_names):
 
 
 def get_name_dat(path, names, stroke_list):
+    sameName = set()
     with open('data/' + path + '.dat', encoding='utf-8') as f:
-        line_list = f.readlines()
-        size = len(line_list)
-        sameName = list()
-        progress = 0
-        for i in range(0, size):
-            # 生成进度
-            if (i + 1) * 100 / size - progress >= 5:
-                progress += 5
-                print('>>正在生成名字...' + str(progress) + '%')
-            data = line_list[i].split(',')
+        for line in f:
+            data = line.split(',')
             if len(data[0]) == 2:
                 name = data[0]
             else:
@@ -108,10 +102,10 @@ def get_name_dat(path, names, stroke_list):
 
             if name in sameName:
                 continue
-            sameName.append(name)
+            sameName.add(name)
             # 转繁体
-            name = s2tConverter.convert(name)
-            gender = data[1].replace('\n', '')
+            # name = s2tConverter.convert(name)
+            gender = data[1].strip()
             if len(name) == 2:
                 if not switch_wuge:
                     names.add(Name(name, '', gender))
