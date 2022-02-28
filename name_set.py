@@ -112,7 +112,7 @@ def get_name_dat(path, names, stroke_list):
                 continue
             sameName.add(name)
             # 转繁体
-            # name = s2tConverter.convert(name)
+            name = s2tConverter.convert(name)
             gender = data[1].strip()
             if len(name) == 2:
                 if not switch_wuge:
