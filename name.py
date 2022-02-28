@@ -14,8 +14,8 @@ class Name:
             .replace(first_name[1], "「" + first_name[1] + "」")
         self.gender = gender
         # 转回简体
-        # cc = OpenCC('t2s')
-        # self.first_name = cc.convert(first_name)
+        cc = OpenCC('t2s')
+        self.first_name = cc.convert(first_name)
         self.first_name = first_name
 
     def __eq__(self, other):
